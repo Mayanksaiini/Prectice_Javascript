@@ -1,0 +1,219 @@
+Javascript by Sheriyans:- Day 1(10-06-2026)
+
+Topics we convered on 10th sept
+1.Variables
+2.declaration
+3.Scope
+4.Ressignment
+5.Redeclaration
+6.Block
+7.intialization
+8.Temporal Dead Zone
+9.Hoisting Impact
+  
+  
+  
+A.Variables 
+ 
+ JavaScript Variables
+
+A variable stores data that we can use later.
+
+let age = 24;
+const name = "Mayank";
+var city = "Aligarh";
+
+let
+Use let when the value can change:
+
+let age = 24;
+age = 25;
+
+console.log(age); // 25
+
+const
+Use const when the value should not be reassigned:
+
+const country = "India";
+
+country = "USA"; // Error
+
+Variables can store different types:
+
+let name = "Mayank";    // String
+let age = 24;           // Number
+let isStudent = true;  // Boolean
+let score = 95.5;      // Number
+let result = null;     // Null
+
+Simple Rule:
+
+let   → can change
+const → cannot be reassigned
+var   → older way; avoid for now
+  
+  
+  
+B.Declaration  
+In JavaScript, declaration means creating a variable by telling JavaScript its name.
+let age; → Declaration
+age = 24; → Assignment
+let age = 24; → Declaration + Assignment  
+  
+
+C.What is Scope in JavaScript?  
+
+Scope means where a variable can be accessed or used in your code.
+
+Think of scope as a boundary around a variable.
+
+1. Global Scope
+
+A variable declared outside any block can be used in many places.
+
+let name = "Mayank";
+
+console.log(name);
+
+2. Block Scope
+
+Variables declared with let or const inside { } can only be used inside that block.
+
+if (true) {
+    let age = 24;
+    console.log(age); // Works
+}
+
+console.log(age); // Error
+
+Simple Rule:
+
+Global scope → accessible outside
+Block scope  → accessible only inside { }
+
+let and const → Block scoped
+var → behaves differently; avoid it for now
+
+D.Ressignment
+Reassignment in JavaScript
+
+Reassignment means giving a new value to an existing variable.
+
+let age = 24;
+
+age = 25;  // Reassignment
+
+Here:
+
+let age = 24; → Declaration + Assignment
+age = 25;    → Reassignment
+
+let → can be reassigned
+const → cannot be reassigned
+
+Example:
+
+let score = 100;
+score = 200; // Reassignment
+
+const country = "India";
+country = "USA"; // Error
+
+Simple Rule:
+
+Assignment   → giving a value
+Reassignment → changing the existing value
+
+E.What is a Block in JavaScript?
+
+A block is a section of code written inside { } curly braces.
+
+Example:
+
+{
+    let age = 24;
+    console.log(age);
+}
+
+The code between { } is called a block.
+
+Blocks are commonly used with:
+
+if
+for
+while
+functions
+
+Example:
+
+if (true) {
+    let score = 100;
+    console.log(score);
+}
+
+Important:
+
+let and const → Block scoped
+var → Not block scoped in the same way
+
+Simple Rule:
+
+{ } → Block
+Code inside { } → Block code
+
+H.Initialization & Temporal Dead Zone (TDZ)
+
+Initialization means giving a variable its first value.
+
+Example:
+
+let age = 24;
+
+let age → Declaration
+= 24    → Initialization
+
+Temporal Dead Zone (TDZ)
+
+TDZ is the time between entering a scope and the point where a let or const variable is initialized.
+
+Example:
+
+console.log(age); // Error
+
+let age = 24;
+
+The variable age exists in the scope, but you cannot use it before initialization.
+
+Simple Rule:
+
+Declaration     → Creating the variable
+Initialization  → Giving it its first value
+Assignment      → Giving a value
+Reassignment    → Changing the value
+TDZ             → Cannot access let/const before initialization
+
+G.Hoisting Impact in JavaScript
+
+Hoisting means JavaScript processes declarations before running the code.
+
+let and const:
+
+console.log(age); // Error
+
+let age = 24;
+
+They are hoisted, but they stay in the Temporal Dead Zone (TDZ)
+until initialization.
+
+var:
+
+console.log(age); // undefined
+
+var age = 24;
+
+var is hoisted and initialized with undefined.
+
+Simple Rule:
+
+let/const → Hoisted + TDZ → Cannot use before initialization
+var        → Hoisted + undefined → Can be accessed before declaration
