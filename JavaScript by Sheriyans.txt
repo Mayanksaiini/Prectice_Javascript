@@ -1,4 +1,4 @@
 Topics-----Javascript
 
 1.Variables (Done)
-2.Data types
+2.Data types (Done)

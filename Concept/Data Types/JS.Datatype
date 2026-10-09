@@ -1,0 +1,925 @@
+Javascript by Sheriyans:- Day 1(10-08-2026)
+
+Topic:-Datatypes
+
+A.Primitive vs Reference Types
+
+JavaScript Values
+│
+├── Primitive
+│   ├── String
+│   ├── Number
+│   ├── Boolean
+│   ├── Undefined
+│   ├── Null
+│   ├── Symbol
+│   └── BigInt
+│
+└── Reference
+    ├── Object
+    ├── Array
+    └── Function
+	
+1.Primitive Types
+
+Primitive values represent a single value.
+
+let name = "Mayank";
+let age = 24;
+let isStudent = true;
+
+Here:
+name       → "Mayank"
+age        → 24
+isStudent  → true
+
+Primitive values are immutable.That doesn't mean the variable cannot change.
+
+For example:
+let name = "Mayank";
+name = "Darkseid";
+
+The variable changed from one string value to another.But the original string "Mayank" itself wasn't modified.	
+
+2.Reference Type
+
+when values comes under braces()
+
+Objects, arrays and functions are reference values.
+
+Example:
+
+let user = {
+    name: "Mayank",
+    age: 24
+};
+
+Think of it approximately like:
+
+user
+ ↓
+┌─────────────────┐
+│ name: "Mayank"  │
+│ age: 24         │
+└─────────────────┘
+
+Now:
+
+let user2 = user;
+
+You might think:
+
+user  → Object A
+user2 → Object B
+
+But that's not what happens.
+
+Instead:
+
+user  ──────┐
+            ↓
+         Object A
+            ↑
+user2 ──────┘
+
+Both variables refer to the same object.
+
+Therefore:
+
+let user = {
+    name: "Mayank"
+};
+
+let user2 = user;
+
+user2.name = "Darkseid";
+
+console.log(user.name);
+
+Output:
+
+Darkseid
+
+Why?
+
+Because user and user2 refer to the same object.
+
+3.Primitive Copy vs Reference Copy
+
+This is extremely important.
+
+Primitive
+
+let a = 10;
+let b = a;
+b = 20;
+console.log(a);
+console.log(b);
+
+Output:10 20
+
+Think:
+
+a → 10
+b → 10
+
+Then:
+b → 20
+
+Changing b doesn't affect a.
+
+Reference
+let user1 = {
+    name: "Mayank"
+};
+
+let user2 = user1;
+
+user2.name = "Darkseid";
+
+console.log(user1.name);
+
+Output:
+
+Darkseid
+
+Because:
+
+user1 ───┐
+         ↓
+       Object
+         ↑
+user2 ───┘
+
+This concept becomes very important when working with test data, API responses, JSON objects and automation frameworks.
+
+
+4.Dynamic Typing
+
+JavaScript is dynamically typed. That means the value has a type. 
+And a variable can hold different types during its lifetime.
+
+let value = 100;
+console.log(typeof value);
+// number
+
+value = "Hello";
+console.log(typeof value);
+// string
+
+value = true;
+console.log(typeof value);
+// boolean
+
+The same variable:
+
+value
+ ↓
+100        → number
+
+value
+ ↓
+"Hello"   → string
+
+value
+ ↓
+true       → boolean
+
+You don't have to declare:
+number value = 100;
+
+like you might in some statically typed languages.
+
+You simply write:
+let value = 100;
+
+5.String
+
+A string represents text. You can create strings using:
+
+Single quotes
+let name = 'Mayank';
+Double quotes
+let name = "Mayank";
+Backticks
+let name = `Mayank`;
+
+All three create strings.
+
+console.log(typeof 'Hello');
+console.log(typeof "Hello");
+console.log(typeof `Hello`);
+
+Output:
+
+string
+string
+string
+Single vs Double Quotes
+
+There is generally no major difference:
+let a = "Hello";
+let b = 'Hello';
+
+console.log(a === b);
+
+Output:
+true
+
+The important difference appears when your text contains quotes.
+let message = "I'm learning JavaScript";
+
+This is easy because the outer quotes are double quotes.
+
+Or:
+
+let message = 'He said "Hello"';
+Template Literals
+
+Backticks are especially useful because they allow interpolation.
+
+let name = "Mayank";
+let age = 24;
+
+console.log(`My name is ${name} and I am ${age} years old.`);
+
+Output:
+
+My name is Mayank and I am 24 years old.
+
+Without template literals:
+
+console.log("My name is " + name + " and I am " + age + " years old.");
+
+Template literals are usually easier to read.
+
+You can even perform calculations:
+
+let price = 100;
+let quantity = 3;
+
+console.log(`Total: ${price * quantity}`);
+
+Output:
+
+Total: 300
+6. Number
+
+JavaScript has one main numeric type:
+
+number
+
+It handles integers:
+
+let age = 24;
+let score = 100;
+
+and decimals:
+
+let price = 99.99;
+let percentage = 85.5;
+
+Check:
+
+console.log(typeof 24);
+console.log(typeof 99.99);
+
+Output:
+
+number
+number
+
+Special Number Values NaN
+NaN means: Not a Number
+
+Example: let result = "hello" * 5;
+
+console.log(result);
+
+Output:
+
+NaN
+
+Interestingly:
+
+console.log(typeof NaN);
+
+Output:
+
+number
+
+This is another JavaScript quirk.
+
+Infinity
+console.log(10 / 0);
+
+Output:
+
+Infinity
+
+And:
+
+console.log(typeof Infinity);
+
+Output:
+
+number
+7. Boolean
+
+Boolean has only two possible values:
+
+true
+false
+
+Example:
+
+let isLoggedIn = true;
+let isAdmin = false;
+
+Booleans are commonly used with conditions.
+
+let isLoggedIn = true;
+
+if (isLoggedIn) {
+    console.log("Welcome!");
+}
+
+Output:
+
+Welcome!
+
+Another example:
+
+let age = 20;
+
+let isAdult = age >= 18;
+
+console.log(isAdult);
+
+Output:
+
+true
+
+Because:
+
+20 >= 18
+
+is true.
+
+8. Null
+
+null represents an intentional absence of a value.
+
+Example:
+
+let selectedUser = null;
+
+You are basically saying:
+
+"There is currently no user selected."
+
+Later:
+
+selectedUser = "Mayank";
+
+Now the variable has a value.
+
+A common example:
+
+let user = null;
+
+if (user === null) {
+    console.log("No user found");
+}
+
+Output:
+
+No user found
+Important null Quirk
+
+Look at this:
+
+console.log(typeof null);
+
+Output:
+
+object
+
+This is weird.
+
+You might expect:
+
+null
+
+but JavaScript returns:
+
+object
+
+This is a historical JavaScript quirk.
+
+Remember:
+
+typeof null
+// "object"
+
+But null is considered a primitive value.
+
+9. Undefined
+
+undefined generally means:
+
+A variable exists, but no value has been assigned.
+
+Example:
+
+let username;
+
+console.log(username);
+
+Output:
+
+undefined
+
+And:
+
+console.log(typeof username);
+
+Output:
+
+undefined
+Function Returning Nothing
+function test() {
+    console.log("Hello");
+}
+
+let result = test();
+
+console.log(result);
+
+Output:
+
+Hello
+undefined
+
+Why?
+
+The function didn't return anything.
+
+So JavaScript automatically returns:
+
+undefined
+Null vs Undefined
+
+This distinction is important.
+
+Undefined
+
+Usually means:
+
+"No value has been assigned."
+
+let user;
+Null
+
+Usually means:
+
+"I intentionally set the value to nothing."
+
+let user = null;
+
+Think:
+
+undefined
+    ↓
+JavaScript says:
+"No value was assigned."
+
+null
+    ↓
+Developer says:
+"I intentionally have no value."
+
+10.Symbol
+
+Symbol creates a unique value.
+
+Example:
+
+let id1 = Symbol("id");
+let id2 = Symbol("id");
+
+console.log(id1 === id2);
+
+Output:
+false
+
+Even though both have "id" as their description, they are different symbols.
+
+Symbol("id") ≠ Symbol("id")
+
+Why is this useful?
+
+Symbols can be used as unique object keys.
+
+let id = Symbol("id");
+
+let user = {
+    name: "Mayank",
+    [id]: 123
+};
+
+console.log(user.name);
+console.log(user[id]);
+
+Output:
+Mayank
+123
+
+You won't use Symbol every day as a beginner, but you should understand what it does.
+
+11. BigInt
+
+JavaScript's normal Number type has limitations when dealing with extremely large integers.
+
+BigInt allows you to represent very large integers.
+
+You create one by adding n at the end:
+
+let bigNumber = 123456789012345678901234567890n;
+
+Check:
+
+console.log(typeof bigNumber);
+
+Output:
+
+bigint
+
+Important:
+
+let a = 10n;
+let b = 20n;
+
+console.log(a + b);
+
+Output:
+
+30n
+
+You generally cannot directly mix BigInt and Number:
+
+let a = 10n;
+let b = 5;
+
+console.log(a + b);
+
+This produces a TypeError.
+
+You need to deliberately convert types.
+
+12. Type Coercion
+
+This is one of the most important JavaScript concepts.
+
+Type coercion means JavaScript converts one type into another.
+
+There are two major types:
+
+Type Coercion
+│
+├── Implicit
+│   JavaScript does it automatically
+│
+└── Explicit
+    Developer does it manually
+Implicit Coercion
+
+JavaScript automatically converts values.
+
+Example:
+
+let result = "5" + 2;
+
+console.log(result);
+
+Output:
+
+52
+
+Why?
+
+Because + with a string causes concatenation.
+
+Conceptually:
+
+"5" + 2
+ ↓
+"5" + "2"
+ ↓
+"52"
+
+The result is a string.
+
+console.log(typeof result);
+
+Output:
+
+string
+Another Example
+console.log("5" - 2);
+
+Output:
+
+3
+
+Why didn't we get "52"?
+
+Because - is numeric subtraction.
+
+JavaScript converts "5" into the number 5.
+
+"5" - 2
+ ↓
+5 - 2
+ ↓
+3
+
+This is why JavaScript coercion can sometimes be confusing.
+
+Explicit Conversion
+
+You can manually convert values.
+
+String()
+let age = 24;
+
+let result = String(age);
+
+console.log(result);
+console.log(typeof result);
+
+Output:
+
+24
+string
+Number()
+let value = "100";
+
+let result = Number(value);
+
+console.log(result);
+console.log(typeof result);
+
+Output:
+
+100
+number
+Boolean()
+let value = 1;
+
+console.log(Boolean(value));
+
+Output:
+
+true
+
+And:
+
+console.log(Boolean(0));
+
+Output:
+
+false
+13. typeof Operator
+
+typeof tells you the type of a value.
+
+console.log(typeof "Hello");
+console.log(typeof 100);
+console.log(typeof true);
+console.log(typeof undefined);
+console.log(typeof null);
+
+Output:
+
+string
+number
+boolean
+undefined
+object
+
+Remember the weird one:
+
+typeof null
+// "object"
+typeof Quirks You Should Memorize
+Quirk 1 — null
+typeof null
+
+returns:
+"object"
+
+even though null is a primitive.
+
+Quirk 2 — Arrays
+let numbers = [1, 2, 3];
+
+console.log(typeof numbers);
+
+Output:
+
+object
+
+Arrays are objects in JavaScript.
+
+If you want to check whether something is an array:
+
+console.log(Array.isArray(numbers));
+
+Output:
+
+true
+Quirk 3 — Functions
+function test() {}
+
+console.log(typeof test);
+
+Output:
+
+function
+
+Functions are technically objects in JavaScript, but typeof gives them the special result:
+
+"function"
+14. Truthy vs Falsy
+
+This is extremely important for:
+
+if
+while
+logical operators
+validation
+API testing
+automation
+
+JavaScript doesn't always require an actual true or false.
+
+Example:
+
+if ("Hello") {
+    console.log("Executed");
+}
+
+Output:
+
+Executed
+
+Why?
+
+Because "Hello" is truthy.
+
+Falsy Values
+
+These values become false when converted to Boolean.
+
+There are only a small number you need to memorize:
+
+false
+0
+-0
+0n
+""
+null
+undefined
+NaN
+
+Example:
+
+console.log(Boolean(false));      // false
+console.log(Boolean(0));          // false
+console.log(Boolean(""));         // false
+console.log(Boolean(null));       // false
+console.log(Boolean(undefined));  // false
+console.log(Boolean(NaN));        // false
+Truthy Values
+
+Almost everything else is truthy.
+
+For example:
+
+Boolean("Hello");   // true
+Boolean("0");       // true
+Boolean("false");   // true
+Boolean(1);         // true
+Boolean(-1);        // true
+Boolean([]);        // true
+Boolean({});        // true
+
+The last two are particularly important.
+
+Empty String vs Empty Array
+
+Look at this:
+
+console.log(Boolean(""));
+
+Output:
+
+false
+
+But:
+
+console.log(Boolean([]));
+
+Output:
+
+true
+
+Why?
+
+Because an empty array is still an object, and objects are truthy.
+
+Same with:
+
+console.log(Boolean({}));
+
+Output:
+
+true
+Important Example
+let username = "";
+
+if (username) {
+    console.log("Username exists");
+} else {
+    console.log("Username is empty");
+}
+
+Output:
+
+Username is empty
+
+Because:
+
+Boolean("")
+// false
+
+But:
+
+let username = "Mayank";
+
+if (username) {
+    console.log("Username exists");
+}
+
+Output:
+
+Username exists
+
+Because:
+
+Boolean("Mayank")
+// true
+Putting Everything Together
+
+Here's a small program that uses several concepts:
+
+let username = "Mayank";
+let age = 24;
+let isLoggedIn = true;
+let profile = null;
+
+console.log(typeof username);
+console.log(typeof age);
+console.log(typeof isLoggedIn);
+console.log(typeof profile);
+
+Output:
+
+string
+number
+boolean
+object
+
+Notice:
+
+typeof profile
+
+returns:
+
+object
+
+because of the null quirk.
+
+
+
+
+
+
+
+
+
+
+
+
+

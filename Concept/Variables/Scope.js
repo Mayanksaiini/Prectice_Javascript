@@ -73,6 +73,6 @@ let weapon = "Sword";
 {
     let damage = 100;
 
-    console.log(weapon);
+    console.log(weapon); // accessed by outer variables
     console.log(damage);
 }
