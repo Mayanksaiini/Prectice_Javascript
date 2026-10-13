@@ -44,3 +44,6 @@ console.log(x - y);
 console.log("hello" * 2);
 console.log(typeof NaN);
 console.log(10 / 0);
+
+
+console.log("Q5 Number & NaN");
