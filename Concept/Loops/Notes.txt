@@ -1,0 +1,165 @@
+Loops-
+
+Topic:-
+1.For
+2.While
+3.do while 
+4.break 
+5.Continue 
+
+
+A.For :
+1. for loop
+Use a for loop when you know how many times you want to repeat something.
+Syntax:
+for (initialization; condition; update) {
+    // Code to execute
+}
+
+
+Example:
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
+
+
+Output:
+1
+2
+3
+4
+5
+
+
+How it works:
+Start
+
+let i = 1
+
+Check
+
+i <= 5 — is it true?
+
+Execute
+
+console.log(i)
+
+Update
+
+i++ — increase by 1, then check again.
+
+
+Remember:
+- let i = 1 → starting value.
+- i <= 5 → condition.
+- i++ → increase i by 1.
+
+B.While :
+A while loop repeats code as long as its condition is true.
+Example:
+let i = 1;
+
+while (i <= 5) {
+    console.log(i);
+    i++;
+}
+
+
+Output:
+1
+2
+3
+4
+5
+
+
+The key difference: you initialize the variable before the loop and update it inside the loop.
+Important: If you forget i++, the loop may run forever because i <= 5 stays true.
+
+C.do...while loop
+A do...while loop executes the code at least once, even if its condition is false.
+Example:
+let i = 1;
+
+do {
+    console.log(i);
+    i++;
+} while (i <= 5);
+
+
+Output:
+1
+2
+3
+4
+5
+
+
+Look at the difference:
+let x = 10;
+
+while (x < 5) {
+    console.log("Hello");
+}
+
+
+Output: Nothing, because the condition is false from the beginning.
+But:
+let x = 10;
+
+do {
+    console.log("Hello");
+} while (x < 5);
+
+
+Output:
+Hello
+
+
+The do...while loop runs once before checking the condition.
+
+D.4. break
+The break statement immediately stops the loop.
+Example:
+for (let i = 1; i <= 10; i++) {
+    if (i === 5) {
+        break;
+    }
+
+    console.log(i);
+}
+
+
+Output:
+1
+2
+3
+4
+
+
+When i becomes 5, break terminates the entire loop.
+Common use cases:
+- Stop searching after finding an item.
+- Stop a loop when a particular condition is met.
+- Exit a menu or repeated process.
+
+E.continue
+The continue statement skips the current iteration and moves to the next one.
+Example:
+for (let i = 1; i <= 5; i++) {
+    if (i === 3) {
+        continue;
+    }
+
+    console.log(i);
+}
+
+
+Output:
+1
+2
+4
+5
+
+
+When i is 3, JavaScript skips console.log(i) for that iteration, then continues with 4.

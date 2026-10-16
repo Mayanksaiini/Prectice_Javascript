@@ -1,0 +1,160 @@
+Control Flow 10-14-26
+
+
+Topics:
+1.if
+2.else
+3.Switch case 
+4.early return 
+5.else if 
+
+A.if statement
+The if statement executes a block of code only when its condition is true.
+if (condition) {
+    // Code runs if condition is true
+}
+
+B.else statement
+
+The else statement runs when the preceding if condition is false.
+
+Syntax
+if (condition) {
+    // Runs if true
+} else {
+    // Runs if false
+}
+
+Example
+let age = 16;
+
+if (age >= 18) {
+    console.log("You can vote.");
+} else {
+    console.log("You cannot vote yet.");
+}
+
+C.else if statement
+
+Use else if when you need to check multiple conditions.
+For example, assigning grades based on marks.
+let marks = 76;
+
+if (marks >= 90) {
+    console.log("Grade A");
+} else if (marks >= 75) {
+    console.log("Grade B");
+} else if (marks >= 50) {
+    console.log("Grade C");
+} else {
+    console.log("Fail");
+}
+
+
+Output:
+Grade B
+
+4.switch statement
+
+A switch statement is useful when you want to compare one value against several possible exact matches.
+Syntax
+switch (expression) {
+    case value1:
+        // Code
+        break;
+
+    case value2:
+        // Code
+        break;
+
+    default:
+        // If no case matches
+}
+
+
+Example: Days of the week
+let day = 3;
+
+switch (day) {
+    case 1:
+        console.log("Monday");
+        break;
+
+    case 2:
+        console.log("Tuesday");
+        break;
+
+    case 3:
+        console.log("Wednesday");
+        break;
+
+    default:
+        console.log("Invalid day");
+}
+
+What do case, break, and default mean?
+
+- case: Defines a value to match.
+- break: Stops execution of the switch after a matching case.
+- default: Runs when no case matches. It is optional.
+
+Without break, JavaScript can continue executing the following cases. 
+This behavior is called fall-through.
+When should you use switch instead of if...else if?
+Use switch for multiple exact values, such as menu options, days, or status codes. 
+Use if...else if when checking ranges, 
+such as age >= 18 or marks < 40.
+
+
+5. Early return
+An early return exits a function immediately when a particular condition is met. 
+It helps you avoid deeply nested if...else statements.
+Example
+function checkAge(age) {
+    if (age < 18) {
+        return "Access denied";
+    }
+
+    return "Access granted";
+}
+
+console.log(checkAge(16));
+console.log(checkAge(22));
+
+
+Output:
+Access denied
+Access granted
+
+
+How does it work?
+1. For age 16, age < 18 is true, so the function returns "Access denied" immediately.
+2. For age 22, the condition is false, so execution reaches the final return.
+Compare the two approaches:
+Without early return
+function login(isLoggedIn) {
+    if (isLoggedIn) {
+        return "Welcome";
+    } else {
+        return "Please log in";
+    }
+}
+
+
+
+
+With early return
+function login(isLoggedIn) {
+    if (!isLoggedIn) {
+        return "Please log in";
+    }
+
+    return "Welcome";
+}
+
+
+
+
+The second approach is often easier to read, especially when a function has several checks.
+Important: return works inside a function. It returns a value and ends that function's execution. 
+It is not interchangeable with break, which exits a loop or switch.

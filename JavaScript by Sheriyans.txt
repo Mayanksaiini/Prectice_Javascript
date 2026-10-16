@@ -1,4 +1,7 @@
 Topics-----Javascript
 
-1.Variables (Done)
-2.Data types (Done)
+1.Variables 10-06-2026 (Done)
+2.Data types 10-08-2026 (Done)
+3.Operators 10-13-2026 (Done)
+4.Control Flows 10-14-2026(Done)
+5.Loops 10-16-2026 (Done)
