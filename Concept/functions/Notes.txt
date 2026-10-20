@@ -1,0 +1,497 @@
+Functions: (10-17-2026 )
+
+1.Function declaration
+2.fucntion expression
+3.Fat arror function
+4.Function parameter and arguments 
+5.Default, rest & spread parameters
+6.return   value  
+7.First class function 
+8.High Order function
+9.Pure vs impure functions 
+10. Closures & lexical scoping 
+11.IIFE
+12.Hoisting diffrences between declaration and expression  
+
+
+
+1.Function Declaration:
+
+A function is a reusable block of code that performs a specific task.
+A function declaration defines a function using the function keyword.
+
+Syntax:
+function greet() {
+    console.log("Hello, World!");
+}
+
+greet();
+
+
+Output:
+Hello, World!
+
+2.Function Expression
+
+A function expression stores a function inside a variable.
+const greet = function () {
+    console.log("Hello, World!");
+};
+
+greet();
+
+
+Output:
+Hello, World!
+
+3. Arrow Function
+
+An arrow function is a shorter way to write a function, introduced in modern JavaScript (ES6).
+
+Regular function:
+function add(a, b) {
+    return a + b;
+}
+
+console.log(add(5, 3));
+
+
+Output: 8
+
+Arrow function:
+const add = (a, b) => {
+    return a + b;
+};
+
+console.log(add(5, 3));
+
+
+Output: 8
+
+For a single expression, you can shorten it further:
+const add = (a, b) => a + b;
+
+console.log(add(5, 3));
+
+
+Output: 8
+
+4. Function Parameters and Arguments
+These two terms are related, but they mean different things.
+- Parameters: Variables listed in the function definition.
+- Arguments: Actual values passed when calling the function.
+Example:
+function greet(name) {
+    console.log("Hello " + name);
+}
+
+greet("Darkseid");
+
+
+Here:
+- name is the parameter.
+- "Darkseid" is the argument.
+Output:
+Hello Darkseid
+
+5. Default, Rest and Spread
+These are three different concepts.
+A. Default parameters
+A default parameter provides a fallback value when an argument is omitted or is undefined.
+function greet(name = "Guest") {
+    console.log("Hello " + name);
+}
+
+greet("Darkseid");
+greet();
+
+
+Output:
+Hello Darkseid
+Hello Guest
+
+
+You can also pass undefined to use the default:
+greet(undefined); // Hello Guest
+
+
+Passing null does not activate the default:
+greet(null); // Hello null
+
+B. Rest parameters (...)
+Rest parameters collect multiple arguments into a single array.
+function addAll(...numbers) {
+    console.log(numbers);
+}
+
+addAll(10, 20, 30, 40);
+
+
+Output:
+[10, 20, 30, 40]
+
+
+Now calculate their sum:
+function addAll(...numbers) {
+    let sum = 0;
+
+    for (let number of numbers) {
+        sum = sum + number;
+    }
+
+    return sum;
+}
+
+console.log(addAll(10, 20, 30));
+
+
+Output: 60
+
+Here, ...numbers collects all the arguments into an array.
+C. Spread syntax (...)
+Spread expands an array or another iterable into individual elements.
+const numbers = [10, 20, 30];
+
+console.log(...numbers);
+
+
+Output:
+10 20 30
+
+
+You can also combine arrays:
+const first = [1, 2];
+const second = [3, 4];
+
+const combined = [...first, ...second];
+
+console.log(combined);
+
+
+Output:
+[1, 2, 3, 4]
+
+6. Return Value
+The return keyword sends a value back to the code that called the function.
+function add(a, b) {
+    return a + b;
+}
+
+let result = add(10, 20);
+
+console.log(result);
+
+
+Output: 30
+
+Understand the difference between return and console.log().
+function add(a, b) {
+    console.log(a + b);
+}
+
+let result = add(10, 20);
+
+console.log(result);
+
+
+Output:
+30
+undefined
+
+
+Why?
+- console.log() displays a value.
+- return gives a value back to the caller.
+- A function that reaches its end without returning a value returns undefined.
+Another important rule: return immediately ends the function.
+function checkAge(age) {
+    if (age < 18) {
+        return "Not eligible";
+    }
+
+    return "Eligible";
+}
+
+console.log(checkAge(16));
+console.log(checkAge(22));
+
+
+Output:
+Not eligible
+Eligible
+
+
+7. First-Class Functions
+In JavaScript, functions are first-class values. This means you can:
+1. Store a function in a variable.
+2. Pass a function as an argument.
+3. Return a function from another function.
+Example 1 — Store a function:
+const greet = function () {
+    console.log("Hello!");
+};
+
+greet();
+
+
+Example 2 — Pass a function as an argument:
+function greet() {
+    console.log("Hello!");
+}
+
+function execute(callback) {
+    callback();
+}
+
+execute(greet);
+
+
+Output: Hello!
+
+Notice that execute(greet) passes the function itself. It does not call it during the argument evaluation.
+
+Example 3 — Return a function:
+function outer() {
+    return function () {
+        console.log("Hello from inner function");
+    };
+}
+
+const result = outer();
+
+result();
+
+
+Output:
+Hello from inner function
+
+
+These capabilities make functions very flexible.
+8. Higher-Order Functions
+A higher-order function (HOF) is a function that takes another function as an argument, returns a function, 
+or does both. 
+
+Another common example is map():
+const numbers = [1, 2, 3, 4];
+
+const result = numbers.map(function (number) {
+    return number * 2;
+});
+
+console.log(result);
+
+
+Output:
+[2, 4, 6, 8]
+
+
+What happened?
+- map() receives a callback function.
+- It runs that callback for each array element.
+- It returns a new array containing the results.
+Using an arrow function:
+const numbers = [1, 2, 3, 4];
+
+const result = numbers.map(number => number * 2);
+
+console.log(result);
+
+
+Output: [2, 4, 6, 8]
+
+Other common higher-order array methods include:
+- filter() — selects elements that pass a condition.
+- find() — finds the first matching element.
+- forEach() — runs a function for each element.
+- reduce() — combines elements into a single result.
+For QA automation, these methods are useful when checking API response data or processing lists of test results.
+
+
+9. Pure vs. Impure Functions
+Pure function
+A pure function returns the same output for the same input and does not cause side effects.
+function add(a, b) {
+    return a + b;
+}
+
+console.log(add(2, 3)); // 5
+console.log(add(2, 3)); // 5
+
+
+It only uses its inputs to calculate the result.
+Impure function
+An impure function may depend on or modify external state, or cause other side effects.
+let total = 10;
+
+function addToTotal(value) {
+    total = total + value;
+    return total;
+}
+
+console.log(addToTotal(5)); // 15
+console.log(addToTotal(5)); // 20
+
+
+The same argument (5) produces different results because the function modifies the external variable total.
+
+Another example:
+function greet(name) {
+    console.log("Hello " + name);
+}
+
+
+This function produces a console side effect. Although the message is predictable, the function is not strictly pure because it performs I/O.
+Pure function	Impure function
+Depends on its inputs	May depend on outside state
+No side effects	May have side effects
+Easier to test	Can require additional setup
+Example: add(2, 3)	Example: modifying a global variable
+Pure functions are especially useful for writing predictable tests.
+
+
+10. Closures and Lexical Scoping
+These concepts are connected.
+A. Lexical scoping
+Lexical scoping means that a function's access to variables is determined by where the function is written in the code.
+const message = "Hello";
+
+function greet() {
+    console.log(message);
+}
+
+greet();
+
+
+Output: Hello
+
+The function can access message because it is defined in an outer scope.
+
+Another example:
+function outer() {
+    let name = "Darkseid";
+
+    function inner() {
+        console.log(name);
+    }
+
+    inner();
+}
+
+outer();
+
+
+Output: Darkseid
+
+The inner function can access the variable declared in the outer function.
+B. Closure
+A closure occurs when a function retains access to variables from its surrounding lexical scope, 
+even after the outer function has finished executing.
+function outer() {
+    let count = 0;
+
+    function inner() {
+        count++;
+        console.log(count);
+    }
+
+    return inner;
+}
+
+const counter = outer();
+
+counter();
+counter();
+counter();
+
+
+Output:
+1
+2
+3
+
+
+11. IIFE (Immediately Invoked Function Expression)
+An IIFE is a function expression that is defined and executed immediately.
+(function () {
+    console.log("I run immediately!");
+})();
+
+
+Output:
+I run immediately!
+
+
+Let's break down the syntax:
+- function () { ... } defines an anonymous function.
+- The surrounding parentheses make it a function expression.
+- The final () invokes it immediately.
+Arrow-function IIFE:
+(() => {
+    console.log("Arrow IIFE");
+})();
+
+
+Output: Arrow IIFE
+
+An IIFE can also return a value:
+const result = (function () {
+    return 10 + 20;
+})();
+
+console.log(result);
+
+
+Output: 30
+
+Why use an IIFE?
+
+Historically, IIFEs were often used to create a private scope and avoid polluting the global scope. 
+Modern JavaScript also has modules and block scope, so IIFEs are less necessary in many situations today.
+
+12. Hoisting: Function Declaration vs. Function Expression
+Hoisting describes how JavaScript processes declarations before executing the code.
+
+Function declarations can generally be called before their position in the source code.
+greet();
+
+function greet() {
+    console.log("Hello");
+}
+
+
+Output: Hello
+
+This works because the function declaration is available when execution begins.
+
+Now consider a function expression:
+greet();
+
+const greet = function () {
+    console.log("Hello");
+};
+
+
+This produces a ReferenceError.
+
+Why? The const binding exists in the scope but cannot be accessed before initialization. This period is called the temporal dead zone (TDZ).
+
+Compare the three cases:
+Function type	Callable before its definition?
+Function declaration	Yes, generally
+Function expression assigned to const	No
+Function expression assigned to let	No
+A function expression assigned to var behaves differently:
+greet();
+
+var greet = function () {
+    console.log("Hello");
+};
+
+
+This produces a TypeError because var is initialized to undefined before the assignment. JavaScript effectively tries to call undefined as a function.
+
+The key distinction:
+- Function declarations are hoisted with their function body available.
+- var declarations are hoisted and initialized to undefined.
+- let and const declarations are hoisted but remain inaccessible until initialized.
+Best practice: Declare functions and initialize function expressions before you use them. This makes your code easier to read and debug.

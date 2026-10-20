@@ -5,3 +5,4 @@ Topics-----Javascript
 3.Operators 10-13-2026 (Done)
 4.Control Flows 10-14-2026(Done)
 5.Loops 10-16-2026 (Done)
+6.Function 10-20-26 (Done)
