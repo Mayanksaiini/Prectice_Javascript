@@ -37,15 +37,16 @@
 
 //4.Create a pure function to transform a value
 
-function double(val){
-  return  function(){
-    return val*2;
-  }
+// function double(val){
+//   return  function(){
+//     return val*2;
+//   }
 
-}
-let v = double(5);
-// console.log(double(5));
-console.log(v());
+// }
+// let v = double(5);
+// // console.log(double(5));
+// console.log(v());
+
 
 
 
