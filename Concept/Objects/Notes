@@ -1,25 +1,476 @@
-Objects 10-23-2026
+ # JAVASCRIPT OBJECTS - COMPLETE NOTES
 
+## 1. KEY-VALUE STRUCTURE
 
+An object stores data in key-value pairs.
 
+let user = {
+    name: "Mayank",
+    age: 22,
+    city: "Aligarh",
+    isStudent: true
+};
 
+console.log(user);
+console.log(user.name);
+console.log(user.age);
 
+Adding, updating and deleting:
 
+user.country = "India";  // Add
+user.age = 23;           // Update
+delete user.city;        // Delete
 
+## 2. DOT NOTATION AND BRACKET NOTATION
 
+A. Dot notation:
 
+let student = {
+    name: "Rahul",
+    age: 21
+};
 
+console.log(student.name);
+console.log(student.age);
 
+B. Bracket notation:
 
+let student = {
+    name: "Rahul",
+    "full address": "Aligarh UP"
+};
 
+console.log(student["name"]);
+console.log(student["full address"]);
 
+Dynamic property access:
 
+let key = "name";
 
+let user = {
+    name: "Mayank",
+    age: 22
+};
 
+console.log(user.key);   // undefined
+console.log(user[key]);  // Mayank
 
+## 3. NESTING AND DEEP ACCESS
 
+An object inside another object is called a nested object.
 
+let user = {
+    name: "Mayank",
+    age: 22,
+    address: {
+        city: "Aligarh",
+        state: "Uttar Pradesh",
+        pincode: {
+            area: 202001
+        }
+    }
+};
 
+console.log(user.name);
+console.log(user.address.city);
+console.log(user.address.state);
+console.log(user.address.pincode.area);
 
+Array inside an object:
 
+let student = {
+    name: "Mayank",
+    skills: ["HTML", "CSS", "JavaScript"]
+};
 
+console.log(student.skills[0]);
+console.log(student.skills[2]);
+
+Object inside an array:
+
+let students = [
+    { name: "Mayank", age: 22 },
+    { name: "Rahul", age: 21 }
+];
+
+console.log(students[0].name);
+console.log(students[1].age);
+
+## 4. OBJECT DESTRUCTURING
+
+Destructuring extracts properties into variables.
+
+Without destructuring:
+
+let user = {
+    name: "Mayank",
+    age: 22,
+    city: "Aligarh"
+};
+
+let name = user.name;
+let age = user.age;
+
+With destructuring:
+
+let { name, age, city } = user;
+
+console.log(name);
+console.log(age);
+console.log(city);
+
+Renaming variables:
+
+let { name: userName, age: userAge } = user;
+
+console.log(userName);
+console.log(userAge);
+
+Default values:
+
+let { name, age = 18 } = user;
+
+Nested destructuring:
+
+let person = {
+    name: "Mayank",
+    address: {
+        city: "Aligarh",
+        state: "UP"
+    }
+};
+
+let {
+    address: { city, state }
+} = person;
+
+console.log(city);
+console.log(state);
+
+## 5. LOOPING THROUGH OBJECTS
+
+Example:
+
+let user = {
+    name: "Mayank",
+    age: 22,
+    city: "Aligarh"
+};
+
+A. for...in:
+
+for (let key in user) {
+    console.log(key);
+    console.log(user[key]);
+}
+
+B. Object.keys():
+
+let keys = Object.keys(user);
+console.log(keys);
+
+Object.keys(user).forEach(function(key) {
+    console.log(key);
+});
+
+C. Object.values():
+
+let values = Object.values(user);
+console.log(values);
+
+D. Object.entries():
+
+let entries = Object.entries(user);
+console.log(entries);
+
+Using for...of:
+
+for (let [key, value] of Object.entries(user)) {
+    console.log(key, value);
+}
+
+Quick comparison:
+- for...in: Iterates over enumerable property keys.
+- Object.keys(): Returns an array of own enumerable string keys.
+- Object.values(): Returns an array of values.
+- Object.entries(): Returns an array of key-value pairs.
+
+## 6. COPYING OBJECTS
+
+A. Reference assignment:
+
+let original = {
+    name: "Mayank",
+    age: 22
+};
+
+let copy = original;
+
+copy.age = 25;
+
+console.log(original.age); // 25
+console.log(copy.age);     // 25
+
+Both variables reference the same object.
+
+B. Spread operator:
+
+let original = {
+    name: "Mayank",
+    age: 22
+};
+
+let copy = { ...original };
+
+copy.age = 25;
+
+console.log(original.age); // 22
+console.log(copy.age);     // 25
+
+C. Object.assign():
+
+let original = {
+    name: "Mayank",
+    age: 22
+};
+
+let copy = Object.assign({}, original);
+
+copy.name = "Rahul";
+
+console.log(original.name); // Mayank
+console.log(copy.name);     // Rahul
+
+D. Shallow copy:
+
+let original = {
+    name: "Mayank",
+    address: {
+        city: "Aligarh"
+    }
+};
+
+let copy = { ...original };
+
+copy.address.city = "Delhi";
+
+console.log(original.address.city); // Delhi
+
+The nested address object is shared.
+
+E. Deep copy:
+
+let original = {
+    name: "Mayank",
+    address: {
+        city: "Aligarh"
+    }
+};
+
+let copy = structuredClone(original);
+
+copy.address.city = "Delhi";
+
+console.log(original.address.city); // Aligarh
+console.log(copy.address.city);     // Delhi
+
+structuredClone() supports many data types but cannot clone functions.
+
+## 7. OPTIONAL CHAINING (?.)
+
+Safely accesses nested properties when an intermediate value might be null or undefined.
+
+Without optional chaining:
+
+let user = {};
+
+console.log(user.address.city); // TypeError
+
+With optional chaining:
+
+console.log(user.address?.city); // undefined
+
+Nested optional chaining:
+
+let user = {
+    profile: {
+        address: {
+            city: "Aligarh"
+        }
+    }
+};
+
+console.log(user.profile?.address?.city);
+
+With arrays:
+
+let user = {
+    skills: ["JavaScript", "SQL"]
+};
+
+console.log(user.skills?.[0]);
+console.log(user.skills?.[5]);
+
+With functions:
+
+let user = {};
+
+user.greet?.();
+
+Optional chaining does not protect undeclared variables.
+
+## 8. COMPUTED PROPERTIES
+
+Creates object keys dynamically using variables or expressions.
+
+Without computed properties:
+
+let key = "name";
+
+let user = {
+    key: "Mayank"
+};
+
+console.log(user.key);
+
+With computed properties:
+
+let key = "name";
+
+let user = {
+    [key]: "Mayank"
+};
+
+console.log(user.name);
+
+Dynamic properties:
+
+let property = "age";
+let value = 22;
+
+let user = {
+    [property]: value
+};
+
+console.log(user);
+
+Using expressions:
+
+let first = "user";
+let second = "name";
+
+let obj = {
+    [first + second]: "Mayank"
+};
+
+console.log(obj.username);
+
+## 9. BONUS OBJECT CONCEPTS
+
+A. Object.freeze():
+
+Prevents adding, deleting or changing top-level properties.
+
+let user = {
+    name: "Mayank",
+    age: 22
+};
+
+Object.freeze(user);
+
+user.age = 25;
+user.city = "Delhi";
+
+console.log(user);
+
+Note: Freeze is shallow.
+
+B. Object.seal():
+
+Prevents adding or deleting properties, but existing writable properties can be changed.
+
+let user = {
+    name: "Mayank",
+    age: 22
+};
+
+Object.seal(user);
+
+user.age = 25;
+user.city = "Delhi";
+delete user.name;
+
+console.log(user);
+
+C. Object.hasOwn():
+
+Checks whether an object has its own property.
+
+let user = {
+    name: "Mayank",
+    age: 22
+};
+
+console.log(Object.hasOwn(user, "name")); // true
+console.log(Object.hasOwn(user, "city")); // false
+
+D. this keyword:
+
+let user = {
+    name: "Mayank",
+
+    greet: function() {
+        console.log("Hello " + this.name);
+    }
+};
+
+user.greet();
+
+Output: Hello Mayank
+
+## 10. QUICK REVISION CHEAT SHEET
+
+Create object: { name: "Mayank" }
+Dot notation: user.name
+Bracket notation: user["name"]
+Add property: user.city = "Delhi"
+Delete property: delete user.city
+Destructuring: let {name} = user
+For-in: for (let key in user)
+Object keys: Object.keys(user)
+Object values: Object.values(user)
+Object entries: Object.entries(user)
+Spread copy: {...user}
+Assign copy: Object.assign({}, user)
+Deep clone: structuredClone(user)
+Optional chaining: user.address?.city
+Computed property: {[key]: value}
+Freeze: Object.freeze(user)
+Seal: Object.seal(user)
+Own property: Object.hasOwn(user, "name")
+
+## 11. PRACTICE QUESTIONS
+
+1. Create an object with name, price, and inStock properties. Print name and price.
+
+2. Access an object's age property using bracket notation and a variable called key.
+
+3. Update a user's city from Aligarh to Delhi and add a country property.
+
+4. Create a nested student object with address, city and state. Print the state.
+
+5. Extract name and age from an object using destructuring.
+
+6. Use for...in to print all keys and values of an object.
+
+7. Use Object.entries() and for...of to print each key-value pair.
+
+8. Create a shallow copy using spread syntax. Change the copied object's top-level property.
+
+9. Deep clone a nested object using structuredClone() and modify its copied city.
+
+10. Safely access user.profile.email using optional chaining.
+
+11. Create an object property dynamically using a variable called key with the value "score".
+
+12. Create a student object with name, marks and address. Destructure the name, loop through properties, deep clone the object and safely access address.city.

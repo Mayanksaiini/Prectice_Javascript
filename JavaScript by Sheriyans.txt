@@ -1,4 +1,6 @@
-Topics-----Javascript
+Topics-----Javascript 
+
+Part-1
 
 1.Variables 10-06-2026 (Done)
 2.Data types 10-08-2026 (Done)
@@ -6,3 +8,8 @@ Topics-----Javascript
 4.Control Flows 10-14-2026(Done)
 5.Loops 10-16-2026 (Done)
 6.Function 10-20-26 (Done)
+7.Arrays 10-23-26 (Done)
+8.Object 10-30-26(Done)
+
+Part-2
+1.
