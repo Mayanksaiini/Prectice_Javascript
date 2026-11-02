@@ -1,0 +1,7 @@
+Javascript 2nd Part by sheriyans
+
+Topic:
+1.Dom tree structure: node,element,text,comment
+2.Selecting elements: getElementById, getElementsByClassName, querySelector,querySelectorAll
+3.Text/content access: innerText, textContent, innerHTML
+4.Attribute manipulation: getAttribute,setAttribute,removeAttribute 
