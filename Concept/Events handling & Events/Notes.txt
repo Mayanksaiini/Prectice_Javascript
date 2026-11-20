@@ -1,0 +1,7 @@
+Events Handling & Events
+
+1.Event binding: addEventListener, removeEventListener
+2.Common events: click,input,change,submit,mouseover,keyup
+3.Event object: target,type,preventDefault
+4.Event bubbling and capturing 
+5.Event delegation 
